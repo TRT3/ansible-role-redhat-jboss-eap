@@ -5,8 +5,15 @@
     path: "{{ jboss_eap_instance_dir }}/service/jboss-as-standalone.sh"
   register: jboss_as_standalone_sh
 
-- name: "{{ jboss_eap_instance_name }} (03) Stop JBoss EAP"
+- name: "{{ jboss_eap_instance_name }} (03) Check existence of jboss service"
+  shell: "service {{ jboss_eap_instance_name }} status"
   when: jboss_as_standalone_sh.stat.exists
+  register: jboss_as_standalone_service
+  failed_when: >
+    jboss_as_standalone_service.rc != 0 and ("could not be found." not in jboss_as_standalone_service.stderr)
+
+- name: "{{ jboss_eap_instance_name }} (03) Stop JBoss EAP"
+  when: "jboss_as_standalone_service.rc == 0"
   ignore_errors: yes
   service:
     name: "{{ jboss_eap_instance_service_name }}"

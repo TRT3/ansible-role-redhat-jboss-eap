@@ -70,6 +70,7 @@ Role Variables
 | `jboss_eap_instance_cli_used_default_port` | `9999` | Default port for the native management interface |
 | `jboss_eap_instance_cli_default_port` | `8888` | Port used only during updates using the CLI (port should be available) |
 | `jboss_eap_instance_standalone_file` | `standalone.xml` | Name of the used standalone XML file |
+| `jboss_eap_systemv_script` | `jboss-as-standalone.sh` | Name of System V script found in jboss_instance/bin/init.d |
 
 
 *Usage of CLI files for the JBoss EAP configuration*
