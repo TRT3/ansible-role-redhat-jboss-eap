@@ -9,18 +9,18 @@
     mode: "0750"
   register: conf_service
 
-- name: "{{ jboss_eap_instance_name }} (05) Enable jboss service"
+- name: "{{ jboss_eap_instance_service_name }} (05) Enable jboss service"
   when: conf_service.changed
   systemd:
-    name: "{{ jboss_eap_instence_name }}.service"
+    name: "{{ jboss_eap_instance_service_name }}.service"
     enabled: yes
   
 
 # Reloading systemd. Should be executed here and not as a handler.
-- name: "{{ jboss_eap_instance_name }} (05) Reload systemd"
+- name: "{{ jboss_eap_instance_service_name }} (05) Reload systemd"
   when: conf_service.changed
   systemd:
-    name: "{{ jboss_eap_instance_name }}.service"
+    name: "jboss_{{ jboss_eap_instance_service_name }}.service"
     daemon_reload: yes
 
 - name: "{{ jboss_eap_instance_name }} (05) Execute CLI file(s)"
