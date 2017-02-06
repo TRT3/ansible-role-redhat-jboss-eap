@@ -20,7 +20,7 @@
 - name: "{{ jboss_eap_instance_name }} (05) Reload systemd"
   when: conf_service.changed
   systemd:
-    name: "{{ jboss_eap_instence_name }}.service"
+    name: "{{ jboss_eap_instance_name }}.service"
     daemon_reload: yes
 
 - name: "{{ jboss_eap_instance_name }} (05) Execute CLI file(s)"
