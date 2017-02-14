@@ -22,6 +22,7 @@
 
 - name: "{{ jboss_eap_instance_name }} (03) Reload systemd"
   command: systemctl daemon-reload
+  ignore_errors: yes
 
 - name: "{{ jboss_eap_instance_name }} (03) Remove all instance-specific files"
   file:
